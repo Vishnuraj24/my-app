@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import propTypes from "prop-types";
 import { Link } from "react-router-dom";
 
@@ -27,6 +27,15 @@ export default function Navbar(props) {
     document.body.style.color = "";
   };
 
+  const [activeLink, setActiveLink] = useState(null);
+
+  const handleHomeClick = () => {
+    setActiveLink(0);
+  };
+  const handleAboutClick = () => {
+    setActiveLink(1);
+  };
+
   return (
     <div>
       <nav
@@ -51,12 +60,31 @@ export default function Navbar(props) {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link className="nav-link active" aria-current="page" to="/">
+                <Link
+                  className={`nav-link ${activeLink === 0 ? "active" : ""}`}
+                  aria-current="page"
+                  to="/"
+                  onClick={handleHomeClick}
+                  style={
+                    activeLink === 0
+                      ? { fontWeight: "bold", borderBottom: "5px solid" }
+                      : {}
+                  }
+                >
                   Home
                 </Link>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/about">
+                <Link
+                  className={`nav-link ${activeLink === 1 ? "active" : ""}`}
+                  to="/about"
+                  onClick={handleAboutClick}
+                  style={
+                    activeLink === 1
+                      ? { fontWeight: "bold", borderBottom: "5px solid" }
+                      : {}
+                  }
+                >
                   {props.aboutText}
                 </Link>
               </li>

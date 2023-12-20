@@ -43,7 +43,7 @@ export default function Textform(props) {
           <div className="form-group col-md-6">
             <h1>
               {
-                Text.split(" ").filter((element) => {
+                Text.split(/\s+/).filter((element) => {
                   return element.length > 0;
                 }).length
               }{" "}
@@ -146,7 +146,7 @@ export default function Textform(props) {
                   <th scope="row">Words</th>
                   <td>
                     {
-                      Text.split(" ").filter((element) => {
+                      Text.split(/\s+/).filter((element) => {
                         return element.length > 0;
                       }).length
                     }
